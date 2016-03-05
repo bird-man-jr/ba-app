@@ -19,9 +19,17 @@
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
+        <script type="text/template" id="tpl-recipe-item">
+         <div class="recipe">
+           <li><%= title %></li>
+           <li><%= high_menu_thumb_url %></li>
+           <li><%= square_hi_res_image_url %></li>
+         </div>
+       </script>
 
         <!-- Add your site or application content here -->
-        <p>Hello world! This is HTML5 Boilerplate.</p>
+        <div id="recipes"></div>
+        <div id="cards"></div>
 
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
