@@ -13,19 +13,23 @@
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
-        <script src="js/vendor/backbone-1.3.1.min.js"></script>
     </head>
     <body>
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <script type="text/template" id="tpl-recipe-item">
-         <div class="recipe">
-           <li><%= title %></li>
-           <li><%= high_menu_thumb_url %></li>
-           <li><%= square_hi_res_image_url %></li>
-         </div>
-       </script>
+          <div class="recipe">
+            <li><%= high_menu_thumb_url %></li>
+            <li><%= square_hi_res_image_url %></li>
+          </div>
+        </script>
+
+        <script type="text/template" id="tpl-card-item">
+          <div class="card">
+            <li><%= title %></li>
+          </div>
+        </script>
 
         <!-- Add your site or application content here -->
         <div id="recipes"></div>
@@ -34,6 +38,8 @@
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>
+        <script src="js/vendor/underscore-min.js"></script>
+        <script src="js/vendor/backbone-1.3.1.min.js"></script>
         <script src="js/main.js"></script>
     </body>
 </html>

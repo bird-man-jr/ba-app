@@ -1,50 +1,73 @@
-var app = {
+var App = {
 
   init: function() {
+    new App.RecipesView();
+  }
+
+};
+
+// Models
+App.Recipe = Backbone.Model.extend();
+
+App.RecipeCollection = Backbone.Collection.extend({
+  model: App.Recipe,
+  url: "https://ba-js-test.herokuapp.com/api/menu_next_week",
+  parse: function (response) {
+    console.log('parsing ...');
+    return response.two_person_plan.recipes;
+  }
+});
+
+// Views
+App.RecipesView = Backbone.View.extend({
+
+  initialize: function () {
+      this.collection = new App.RecipeCollection();
+      _.bindAll(this, 'render');
+      var that = this;
+      this.collection.fetch({
+        success: function (response) {
+            that.render(response.models);
+        }
+      });
+  },
+
+  render:function (model) {
+      _.each(model, function (recipe) {
+        console.log("passed");
+        console.log(recipe);
+        new App.RecipeView({model:recipe}).render();
+        new App.CardView({model:recipe}).render();
+      }, this);
 
   }
 
-  // Models
-  app.Recipe = Backbone.Model.extend();
+});
 
-  app.RecipeCollection = Backbone.Collection.extend({
-    model: Recipe,
-    url: "https://ba-js-test.herokuapp.com/api/menu_next_week",
-    parse: function (response) {
-      return response.recipes;
-    }
+App.RecipeView = Backbone.View.extend({
 
-    console.log(RecipeCollection[0]);
+  tagName: 'div',
 
-  });
+  template:_.template($('#tpl-recipe-item').html()),
 
-  // Views
-  app.RecipesView = Backbone.View.extend({
+  render:function () {
+    $('#recipes').append(this.template(this.model.attributes.recipe));
+    return this;
+  }
 
-    initialize:function () {
-          this.model.bind("reset", this.render, this);
-      },
+});
 
-      render:function (eventName) {
-          _.each(this.model.models, function (recipe) {
-              $(this.el).append(new RecipeView({model:recipe}).render().el);
-          }, this);
-          return this;
-      }
+App.CardView = Backbone.View.extend({
 
-  });
+  tagName: 'div',
 
-  app.RecipeView = Backbone.View.extend({
+  template:_.template($('#tpl-card-item').html()),
 
-    template:_.template($('#tpl-recipe-item').html()),
+  render:function () {
+    $('#cards').append(this.template(this.model.attributes.recipe));
+    return this;
+  }
 
-    render:function (eventName) {
-        $(this.el).html(this.template(this.model.toJSON()));
-        return this;
-    }
-
-  });
-
-};
+});
 
 App.init();
