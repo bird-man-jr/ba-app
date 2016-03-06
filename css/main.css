@@ -16,6 +16,12 @@ html {
     line-height: 1.4;
 }
 
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
 /*
  * Remove text-shadow in selection highlight:
  * https://twitter.com/miketaylr/status/12228805301
@@ -95,21 +101,35 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+#recipes, #cards {
+  min-width: 750px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
+.recipe, .card {
+  box-sizing: border-box;
+  width: 33%;
+  float: left;
+  padding: 5px 0px 5px 0px;
+}
 
+.card {
+  padding: 5px 5px 5px 5px;
+}
 
+.card:nth-child(even){
+  background-color: red;
+}
 
+.card:nth-child(odd){
+  background-color: blue;
+}
 
-
-
-
-
-
-
-
-
-
-
+.recipe img{
+  width: 95%;
+  height: auto;
+}
 
 /* ==========================================================================
    Helper classes

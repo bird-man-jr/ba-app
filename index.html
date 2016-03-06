@@ -20,14 +20,19 @@
         <![endif]-->
         <script type="text/template" id="tpl-recipe-item">
           <div class="recipe">
-            <li><%= high_menu_thumb_url %></li>
-            <li><%= square_hi_res_image_url %></li>
+            <img src="http://<%= high_menu_thumb_url %>"/>
           </div>
         </script>
 
         <script type="text/template" id="tpl-card-item">
           <div class="card">
-            <li><%= title %></li>
+            <%
+            title = title.split("with");
+            var firstParagraph = title[0];
+            var secondParagraph = title[1];
+             %>
+            <p><b><%= firstParagraph %></b></p>
+            <p>with <%= secondParagraph %></p>
           </div>
         </script>
 
