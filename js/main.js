@@ -1,10 +1,14 @@
 var App = {
 
   points: 0,
-  seconds: 120,
+  seconds: 0,
 
   init: function() {
     new App.RecipesView();
+  },
+
+  renderScore: function() {
+    $('#display').text(String(App.points));
   }
 
 };
@@ -79,7 +83,11 @@ App.RecipeView = Backbone.View.extend({
     var targetId = $(e.target).parent().attr('data-product-id');
     var itemDragged = e.originalEvent.dataTransfer.getData("text/plain");
     if (targetId === itemDragged) {
-
+      App.points += 10;
+      App.renderScore();
+    } else {
+      App.points -= 5;
+      App.renderScore();
     };
     $(e.target).removeClass('selected');
     return false;
