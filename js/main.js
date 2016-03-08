@@ -1,17 +1,40 @@
 var App = {
 
   points: 0,
-  seconds: 0,
+  seconds: 15,
 
   init: function() {
     App.recipesCollection = new App.RecipeCollection();
     new App.RecipesView();
     new App.CardsView
     App.renderScore();
+    App.timer();
+    App.renderTimer();
   },
 
   renderScore: function() {
-    $('#display').text(String(App.points));
+    $('#display_score').text(String(App.points));
+  },
+
+  renderTimer: function() {
+    $('#display_timer').text(String(App.seconds));
+  },
+
+  timer: function() {
+
+    window.setInterval(function(){
+
+    App.seconds -= 1;
+
+    App.renderTimer();
+
+    if (App.seconds == 0) {
+        window.clearInterval(App.timer);
+        alert("Timer finished");
+    }
+
+    }, 1000);
+
   }
 
 };

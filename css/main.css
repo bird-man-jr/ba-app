@@ -118,14 +118,6 @@ textarea {
   padding: 5px 5px 5px 5px;
 }
 
-.card:nth-child(even){
-  background-color: red;
-}
-
-.card:nth-child(odd){
-  background-color: blue;
-}
-
 .recipe img{
   width: 95%;
   height: auto;
