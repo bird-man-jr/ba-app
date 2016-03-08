@@ -19,25 +19,20 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <script type="text/template" id="tpl-recipe-item">
-          <div class="recipe">
+          <div class="recipe" data-product-id="<%= id %>">
             <img src="http://<%= high_menu_thumb_url %>"/>
           </div>
         </script>
 
         <script type="text/template" id="tpl-card-item">
-          <div class="card">
-            <%
-            title = title.split("with");
-            var firstParagraph = title[0];
-            var secondParagraph = title[1];
-             %>
-            <p><b><%= firstParagraph %></b></p>
-            <p>with <%= secondParagraph %></p>
+          <div class="card" data-product-id="<%= id %>" draggable="true">
+            <p><b><%= title %></b></p>
           </div>
         </script>
 
         <!-- Add your site or application content here -->
         <div id="recipes"></div>
+        <div class="clearfix"></div>
         <div id="cards"></div>
 
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
