@@ -4,7 +4,10 @@ var App = {
   seconds: 0,
 
   init: function() {
+    App.recipesCollection = new App.RecipeCollection();
     new App.RecipesView();
+    new App.CardsView
+    App.renderScore();
   },
 
   renderScore: function() {
@@ -27,8 +30,10 @@ App.RecipeCollection = Backbone.Collection.extend({
 // Views
 App.RecipesView = Backbone.View.extend({
 
+  el: '#recipes',
+
   initialize: function () {
-      this.collection = new App.RecipeCollection();
+      this.collection = App.recipesCollection;
       _.bindAll(this, 'render');
       var that = this;
       this.collection.fetch({
@@ -40,17 +45,13 @@ App.RecipesView = Backbone.View.extend({
 
   render:function (model) {
       _.each(model, function (recipe) {
-        new App.RecipeView({model:recipe}).render();
-        new App.CardView({model:recipe}).render();
+        $(this.el).append(new App.RecipeView({model:recipe}).render().el);
       }, this);
-
   }
 
 });
 
 App.RecipeView = Backbone.View.extend({
-
-  el: '#recipes',
 
   tagName: 'div',
 
@@ -90,19 +91,42 @@ App.RecipeView = Backbone.View.extend({
       App.renderScore();
     };
     $(e.target).removeClass('selected');
+    e.stopPropagation();
     return false;
   },
 
   render:function () {
-    $(this.$el).append(this.template(this.model.attributes.recipe));
+    $(this.$el).html(this.template(this.model.attributes.recipe));
     return this;
   }
 
 });
 
-App.CardView = Backbone.View.extend({
+App.CardsView = Backbone.View.extend({
 
   el: '#cards',
+
+  initialize: function () {
+      this.collection = App.recipesCollection;
+      _.bindAll(this, 'render');
+      var that = this;
+      this.collection.fetch({
+        success: function (response) {
+            that.render(response.models);
+        }
+      });
+  },
+
+  render:function (model) {
+      _.each(model, function (recipe) {
+        $(this.el).append(new App.CardView({model:recipe}).render().el);
+      }, this);
+  }
+
+});
+
+
+App.CardView = Backbone.View.extend({
 
   tagName: 'div',
 
@@ -118,8 +142,8 @@ App.CardView = Backbone.View.extend({
   },
 
   render:function () {
-    $(this.$el).append(this.template(this.model.attributes.recipe));
-    return;
+    $(this.$el).html(this.template(this.model.attributes.recipe));
+    return this;
   }
 
 });
