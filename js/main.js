@@ -6,7 +6,7 @@ var App = {
   init: function() {
     App.recipesCollection = new App.RecipeCollection();
     new App.RecipesView();
-    new App.CardsView
+    new App.CardsView();
     App.renderScore();
     // App.timer();
     // App.renderTimer();
@@ -54,6 +54,8 @@ App.RecipeCollection = Backbone.Collection.extend({
 App.RecipesView = Backbone.View.extend({
 
   el: '#recipes',
+  tagName: "div",
+  className: "recipe",
 
   initialize: function () {
       this.collection = App.recipesCollection;

@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
-        <!-- Place favicon.ico in the root directory -->
+        <link href='https://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
 
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
@@ -19,13 +19,13 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <script type="text/template" id="tpl-recipe-item">
-          <div class="recipe span4" data-product-id="<%= id %>">
             <img src="http://<%= high_menu_thumb_url %>"/>
-          </div>
         </script>
 
+        <!-- data-product-id="<%= id %>" -->
+
         <script type="text/template" id="tpl-card-item">
-          <div class="card span4" data-product-id="<%= id %>" draggable="true">
+          <div class="card" data-product-id="<%= id %>" draggable="true">
             <div class="textholder">
               <p><b><%= title %></b></p>
             </div>
@@ -33,22 +33,25 @@
         </script>
 
 
-        <div class="wrap">
-          <div id="header" class="span12">
-            <div id="header-logo">
-              <img src="img/logo.png"/>
-            </div>
-            <div id="header-clock">
+        <div id="content-area">
+          <div id="navigation">
+            <img src="img/logo.png" id="navigation-logo"/>
+            <div id="navigation-clock">
+              <img src="img/clock.png"/>
+              <span>Time Remaining: </span>
               <span id="display_time">0</span>
             </div>
-            <div id="header-score">
+            <div id="navigation-score">
+              <span>Points: </span>
               <span id="display_score"></span>
             </div>
+            <div class="clearfix"></div>
           </div>
 
-          <div id="recipes" class="span12"></div>
+          <div id="recipes"></div>
+          <div class="clearfix"></div>
 
-          <div id="cards" class="span12"></div>
+          <div id="cards"></div>
 
         </div>
 

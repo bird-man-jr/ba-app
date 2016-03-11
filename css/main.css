@@ -98,57 +98,6 @@ textarea {
 }
 
 /* ==========================================================================
-   Author's custom styles
-   ========================================================================== */
-
-#header {
-  color: #2f3566;
-  border-bottom: 3px solid #2f3566;
-}
-
-#recipes {
-
-}
-
-#cards {
-
-}
-
-.card {
-  background-color: blue;
-  color: #626c83;
-}
-
-.recipe {
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-
-.card .textholder {
-  width: 80%;
-  height: 80%;
-  background-color: yellow;
-}
-
-.recipe img{
-  width: 98%;
-  height: auto;
-  display:block;
-  margin:auto;
-  user-drag: none;
-  user-select: none;
-  -moz-user-select: none;
-  -webkit-user-drag: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-}
-
-.selected {
-  border: 3px dotted black;
-}
-
-
-/* ==========================================================================
    Helper classes
    ========================================================================== */
 
@@ -318,125 +267,77 @@ textarea {
     }
 }
 
-/**********************************************
-* 1180 CSS Grid System - Fluid
-* by Chris Blackwell / chrisblackwell.me
-**********************************************/
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
 
-body {
-    width: 100%;
-    margin: 0;
-    padding: 0;
+* {
+  font-family: 'PT Sans', sans-serif;
+  color: #2f3566;
 }
 
-.wrap {
-    width: 1180px;
-    margin: 0 auto;
-}
-.flexbox {
-    display: -webkit-flex;
-    display: flex;
+#content-area {
+  width: 1180px;
+  margin: 0 auto;
 }
 
-.row {
-    margin: 20px 0;
-}
-    .row:after {
-        content: "";
-        display: table;
-        clear: both;
-    }
-
-/* Sets default values on all columns */
-[class*="span"] {
-    margin-right: 2%;
-    float: left;
-    -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-        -ms-box-sizing: border-box;
-            box-sizing: border-box;
-}
-    [class*="span"]:last-child {
-        margin-right: 0;
-    }
-
-    .prototype [class*="span"] {
-        background: #ececec;
-        border-radius: 4px;
-        padding: 15px;
-        text-align: center;
-    }
-
-.span1 {
-    width: 6.5%;
-}
-.span2 {
-    width: 15%;
-}
-.span3 {
-    width: 23.5%;
-}
-.span4 {
-    width: 32%;
-}
-.span5 {
-    width: 40.5%;
-}
-.span6 {
-    width: 49%;
-}
-.col7 {
-    width: 57.5%;
-}
-.span8 {
-    width: 66%;
-}
-.span9 {
-    width: 74.5%;
-}
-.span10 {
-    width: 83%;
-}
-.span11 {
-    width: 91.5%;
-}
-.span12 {
-    width: 100%;
-    float: none;
+#navigation {
+  width: 100%;
+  border-bottom: 3px solid #2f3566;
+  font-size: 1.3em;
 }
 
-/**********************************
-* Smaller Screens
-**********************************/
-@media only screen and (max-width: 1200px) {
-    .wrap {
-        width: 960px;
-    }
+#navigation-clock {
+  margin: 0 auto;
 }
 
-/**********************************
-* Tablets
-**********************************/
-@media only screen and (max-width: 1024px) {
-    .wrap {
-        width: 760px;
-    }
+#navigation-logo {
+  max-width: 130px;
+  height:auto;
+  float: left;
 }
 
-/**********************************
-* Mobile Devices
-* - All columns are full width
-**********************************/
-@media only screen and (max-width: 767px) {
-    .wrap {
-        width: 96%;
-    }
-    .row {
-        margin: 0;
-    }
-    [class*="span"] {
-        margin: 15px 0;
-        float: none;
-        width: 100%;
-    }
+#navigation-score {
+  float: right;
+}
+
+#recipes {
+  width: 100%;
+}
+
+#recipes > div {
+  width: 33.33%;
+  float: left;
+}
+
+#recipes div > img {
+  width: 98%;
+  height: auto;
+  display:block;
+  margin:auto;
+  user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+.recipe .selected {
+  border: 3px dotted black;
+}
+
+#cards {
+  width: 100%;
+}
+
+.card {
+  background-color: blue;
+  color: #626c83;
+}
+
+.card .textholder {
+  width: 80%;
+  height: 80%;
+  background-color: yellow;
 }
