@@ -101,26 +101,40 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
-#recipes, #cards {
-  min-width: 750px;
-  max-width: 1200px;
-  margin: 0 auto;
+#header {
+  color: #2f3566;
+  border-bottom: 3px solid #2f3566;
 }
 
-.recipe, .card {
-  box-sizing: border-box;
-  width: 33%;
-  float: left;
-  padding: 5px 0px 5px 0px;
+#recipes {
+
+}
+
+#cards {
+
 }
 
 .card {
-  padding: 5px 5px 5px 5px;
+  background-color: blue;
+  color: #626c83;
+}
+
+.recipe {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.card .textholder {
+  width: 80%;
+  height: 80%;
+  background-color: yellow;
 }
 
 .recipe img{
-  width: 95%;
+  width: 98%;
   height: auto;
+  display:block;
+  margin:auto;
   user-drag: none;
   user-select: none;
   -moz-user-select: none;
@@ -301,5 +315,128 @@ textarea {
     h2,
     h3 {
         page-break-after: avoid;
+    }
+}
+
+/**********************************************
+* 1180 CSS Grid System - Fluid
+* by Chris Blackwell / chrisblackwell.me
+**********************************************/
+
+body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.wrap {
+    width: 1180px;
+    margin: 0 auto;
+}
+.flexbox {
+    display: -webkit-flex;
+    display: flex;
+}
+
+.row {
+    margin: 20px 0;
+}
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+/* Sets default values on all columns */
+[class*="span"] {
+    margin-right: 2%;
+    float: left;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+        -ms-box-sizing: border-box;
+            box-sizing: border-box;
+}
+    [class*="span"]:last-child {
+        margin-right: 0;
+    }
+
+    .prototype [class*="span"] {
+        background: #ececec;
+        border-radius: 4px;
+        padding: 15px;
+        text-align: center;
+    }
+
+.span1 {
+    width: 6.5%;
+}
+.span2 {
+    width: 15%;
+}
+.span3 {
+    width: 23.5%;
+}
+.span4 {
+    width: 32%;
+}
+.span5 {
+    width: 40.5%;
+}
+.span6 {
+    width: 49%;
+}
+.col7 {
+    width: 57.5%;
+}
+.span8 {
+    width: 66%;
+}
+.span9 {
+    width: 74.5%;
+}
+.span10 {
+    width: 83%;
+}
+.span11 {
+    width: 91.5%;
+}
+.span12 {
+    width: 100%;
+    float: none;
+}
+
+/**********************************
+* Smaller Screens
+**********************************/
+@media only screen and (max-width: 1200px) {
+    .wrap {
+        width: 960px;
+    }
+}
+
+/**********************************
+* Tablets
+**********************************/
+@media only screen and (max-width: 1024px) {
+    .wrap {
+        width: 760px;
+    }
+}
+
+/**********************************
+* Mobile Devices
+* - All columns are full width
+**********************************/
+@media only screen and (max-width: 767px) {
+    .wrap {
+        width: 96%;
+    }
+    .row {
+        margin: 0;
+    }
+    [class*="span"] {
+        margin: 15px 0;
+        float: none;
+        width: 100%;
     }
 }

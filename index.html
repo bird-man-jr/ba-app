@@ -19,30 +19,38 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <script type="text/template" id="tpl-recipe-item">
-          <div class="recipe" data-product-id="<%= id %>">
+          <div class="recipe span4" data-product-id="<%= id %>">
             <img src="http://<%= high_menu_thumb_url %>"/>
           </div>
         </script>
 
         <script type="text/template" id="tpl-card-item">
-          <div class="card" data-product-id="<%= id %>" draggable="true">
-            <p><b><%= title %></b></p>
+          <div class="card span4" data-product-id="<%= id %>" draggable="true">
+            <div class="textholder">
+              <p><b><%= title %></b></p>
+            </div>
           </div>
         </script>
 
-        <div class="menu">
-          <div class="score">
-            <span id="display_score"></span>
-          <div>
-          <div class="timer">
-            <span id="display_timer"></span>
-          <div>
-        </div>
 
-        <!-- Add your site or application content here -->
-        <div id="recipes"></div>
-        <div class="clearfix"></div>
-        <div id="cards"></div>
+        <div class="wrap">
+          <div id="header" class="span12">
+            <div id="header-logo">
+              <img src="img/logo.png"/>
+            </div>
+            <div id="header-clock">
+              <span id="display_time">0</span>
+            </div>
+            <div id="header-score">
+              <span id="display_score"></span>
+            </div>
+          </div>
+
+          <div id="recipes" class="span12"></div>
+
+          <div id="cards" class="span12"></div>
+
+        </div>
 
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>

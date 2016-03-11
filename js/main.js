@@ -8,8 +8,8 @@ var App = {
     new App.RecipesView();
     new App.CardsView
     App.renderScore();
-    App.timer();
-    App.renderTimer();
+    // App.timer();
+    // App.renderTimer();
   },
 
   renderScore: function() {
@@ -76,8 +76,6 @@ App.RecipesView = Backbone.View.extend({
 
 App.RecipeView = Backbone.View.extend({
 
-  tagName: 'div',
-
   template:_.template($('#tpl-recipe-item').html()),
 
   events: {
@@ -107,6 +105,8 @@ App.RecipeView = Backbone.View.extend({
     var targetId = $(e.target).parent().attr('data-product-id');
     var itemDragged = e.originalEvent.dataTransfer.getData("text/plain");
     if (targetId === itemDragged) {
+      var card = $("div .card[data-product-id='" + targetId +"']");
+      card.find('p').text(' ');
       App.points += 10;
       App.renderScore();
     } else {
