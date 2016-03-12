@@ -19,10 +19,10 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <script type="text/template" id="tpl-recipe-item">
-            <img src="http://<%= high_menu_thumb_url %>"/>
+            <img data-product-id="<%= id %>" class="recipe" src="http://<%= high_menu_thumb_url %>"/>
         </script>
 
-        <!-- data-product-id="<%= id %>" -->
+        <!-- " -->
 
         <script type="text/template" id="tpl-card-item">
           <div class="card" data-product-id="<%= id %>" draggable="true">

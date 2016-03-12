@@ -104,11 +104,14 @@ App.RecipeView = Backbone.View.extend({
 
   dropHandler: function(e) {
     e.preventDefault();
-    var targetId = $(e.target).parent().attr('data-product-id');
+    debugger;
+    var targetId = $(e.target).attr('data-product-id');
     var itemDragged = e.originalEvent.dataTransfer.getData("text/plain");
     if (targetId === itemDragged) {
-      var card = $("div .card[data-product-id='" + targetId +"']");
-      card.find('p').text(' ');
+      var card = $("div .card[data-product-id='" + targetId +"']").html();
+      var overlay = document.createElement("div");
+      $(overlay).html(card);
+      
       App.points += 10;
       App.renderScore();
     } else {
@@ -130,6 +133,8 @@ App.RecipeView = Backbone.View.extend({
 App.CardsView = Backbone.View.extend({
 
   el: '#cards',
+  tagName: "div",
+  className: "card",
 
   initialize: function () {
       this.collection = App.recipesCollection;
