@@ -283,23 +283,36 @@ textarea {
 
 #navigation {
   width: 100%;
-  border-bottom: 3px solid #2f3566;
   font-size: 1.3em;
   margin-bottom: 10px;
+  text-align: center;
+  position: relative;
 }
 
 #navigation-clock {
   margin: 0 auto;
+  position: relative;
+  top: 30px;
+  margin-right: 5em;
+}
+
+#navigation-clock span {
+  text-align: start;
+}
+
+#navigation-clock img {
+  width: 20px;
+  height: 20px;
+}
+
+#navigation-score {
+  float: right;
 }
 
 #navigation-logo {
   max-width: 130px;
   height:auto;
   float: left;
-}
-
-#navigation-score {
-  float: right;
 }
 
 #recipes {
@@ -369,11 +382,12 @@ textarea {
 #cards-header {
   text-align: center;
   background-color: #2f3566;
+  padding: 15px;
 }
 
 #cards-header span {
-  font-size: 1.3em;
   color: white;
+  font-size: 1.3em;
 }
 
 #cards {
@@ -385,7 +399,22 @@ textarea {
   background-color: #f2f2f2;
   border-radius: 10px;
   border: 1px solid #c6c6c6;
-  width: 98%;
+  width: 97%;
+  margin: 0 auto;
+}
+
+.card-header, .card-subheader {
+  padding-left: 20px;
+}
+
+.card-header {
+  padding-top: 10px;
+  font-size: 1.2em;
+}
+
+.card-subheader {
+  padding-bottom: 10px;
+  font-size: .9em;
 }
 
 .card-removed {

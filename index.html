@@ -28,9 +28,12 @@
 
         <script type="text/template" id="tpl-card-item">
           <div class="card" data-product-id="<%= id %>" draggable="true">
-            <div class="textholder">
-              <p><b><%= title %></b></p>
-            </div>
+              <%title = title.split("with");
+              var firstParagraph = title[0];
+              var secondParagraph = title[1];
+              %>
+              <div class="card-header"><%= firstParagraph %></div>
+              <div class="card-subheader"> with <%= secondParagraph %></div>
           </div>
         </script>
 
