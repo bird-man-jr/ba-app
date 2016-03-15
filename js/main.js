@@ -1,7 +1,7 @@
 var App = {
 
   points: 0,
-  seconds: 15,
+  seconds: 120,
 
   init: function() {
     App.recipesCollection = new App.RecipeCollection();
@@ -9,7 +9,7 @@ var App = {
     App.cards = new App.CardsView();
     App.renderScore();
     // App.timer();
-    // App.renderTimer();
+    App.renderTimer();
   },
 
   restart: function() {
@@ -23,7 +23,7 @@ var App = {
   },
 
   renderTimer: function() {
-    $('#display_timer').text(String(App.seconds));
+    $('#display_time').text(String(App.seconds));
   },
 
   timer: function() {
@@ -118,17 +118,19 @@ App.RecipeView = Backbone.View.extend({
     var targetId = $(e.target).attr('data-product-id');
     var itemDragged = e.originalEvent.dataTransfer.getData("text/plain");
     if (targetId === itemDragged) {
-      var card = $("div .card[data-product-id='" + targetId +"']").html();
+      var card = $("div .card[data-product-id='" + targetId +"']");
       var text = $(card).text();
-      $(e.target).parent().find('.select-icon').addClass('select-checked');
-      $(e.target).parent().find('.recipe-text').addClass('recipe-checked');
+      $(card).html("<br><br><br>");
+      $(card).addClass('card-removed');
+      $(e.target).parent().find('.select-icon').addClass('select-icon-checked');
+      $(e.target).parent().find('.recipe-text').addClass('recipe-text-checked');
       $(e.target).parent().find('.recipe-text').text(text);
       App.points += 10;
       App.renderScore();
     } else {
       App.points -= 5;
       App.renderScore();
-      $(e.target).parent().find('.select-icon').addClass('x');
+      $(e.target).parent().find('.select-icon').addClass('select-icon-x');
     };
     $(e.target).removeClass('selected');
     e.stopPropagation();
