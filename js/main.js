@@ -5,11 +5,17 @@ var App = {
 
   init: function() {
     App.recipesCollection = new App.RecipeCollection();
-    new App.RecipesView();
-    new App.CardsView();
+    App.recipes = new App.RecipesView();
+    App.cards = new App.CardsView();
     App.renderScore();
     // App.timer();
     // App.renderTimer();
+  },
+
+  restart: function() {
+    App.cards.refreshView();
+    App.recipes.refreshView();
+
   },
 
   renderScore: function() {
@@ -72,6 +78,12 @@ App.RecipesView = Backbone.View.extend({
       _.each(model, function (recipe) {
         $(this.el).append(new App.RecipeView({model:recipe}).render().el);
       }, this);
+  },
+
+  refreshView: function() {
+    this.$el.empty().off();
+    this.stopListening();
+    this.initialize();
   }
 
 });
@@ -89,7 +101,6 @@ App.RecipeView = Backbone.View.extend({
 
   dragEnterHandler: function(e) {
     e.preventDefault();
-    $(e.target).addClass('selected');
     return false;
   },
 
@@ -104,19 +115,20 @@ App.RecipeView = Backbone.View.extend({
 
   dropHandler: function(e) {
     e.preventDefault();
-    debugger;
     var targetId = $(e.target).attr('data-product-id');
     var itemDragged = e.originalEvent.dataTransfer.getData("text/plain");
     if (targetId === itemDragged) {
       var card = $("div .card[data-product-id='" + targetId +"']").html();
-      var overlay = document.createElement("div");
-      $(overlay).html(card);
-      
+      var text = $(card).text();
+      $(e.target).parent().find('.select-icon').addClass('select-checked');
+      $(e.target).parent().find('.recipe-text').addClass('recipe-checked');
+      $(e.target).parent().find('.recipe-text').text(text);
       App.points += 10;
       App.renderScore();
     } else {
       App.points -= 5;
       App.renderScore();
+      $(e.target).parent().find('.select-icon').addClass('x');
     };
     $(e.target).removeClass('selected');
     e.stopPropagation();
@@ -151,6 +163,12 @@ App.CardsView = Backbone.View.extend({
       _.each(model, function (recipe) {
         $(this.el).append(new App.CardView({model:recipe}).render().el);
       }, this);
+  },
+
+  refreshView: function() {
+    this.$el.empty().off();
+    this.stopListening();
+    this.initialize();
   }
 
 });
@@ -177,5 +195,6 @@ App.CardView = Backbone.View.extend({
   }
 
 });
+
 
 App.init();

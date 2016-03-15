@@ -311,6 +311,7 @@ textarea {
   float: left;
   margin-top: 10px;
   margin-bottom: 10px;
+  position: relative;
 }
 
 #recipes div > img {
@@ -326,8 +327,44 @@ textarea {
   -ms-user-select: none;
 }
 
-.recipe .selected {
-  border: 3px dotted black;
+.select-checked {
+  background-image: url("../img/check.png");
+  background-repeat: no-repeat;
+  position: absolute;
+  left: 40%;
+  top: 15%;
+  background-size: cover;
+  width: 100px;
+ height: 100px;
+  border-radius: 50px;
+ -webkit-border-radius: 100px;
+ -moz-border-radius: 100px;
+}
+
+.recipe-checked {
+  position: absolute;
+  left: 0;
+  bottom: 15px;
+  color: #626c83;
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  border: 1px solid #c6c6c6;
+  width: 99%;
+}
+
+.x {
+  background-image: url("../img/x.png");
+  background-repeat: no-repeat;
+  position: absolute;
+  border-radius: 50%;
+  left: 38%;
+  top: 27%;
+  background-size: cover;
+  width: 100px;
+ height: 100px;
+  border-radius: 50px;
+ -webkit-border-radius: 50px;
+ -moz-border-radius: 50px;
 }
 
 #cards {
