@@ -1,12 +1,17 @@
 var App = {
 
-  points: 0,
-  seconds: 120,
+  config: {
+    points: 0,
+    seconds: 20,
+    num_recipes: 6
+  },
+
 
   init: function() {
     App.recipesCollection = new App.RecipeCollection();
     App.recipes = new App.RecipesView();
     App.cards = new App.CardsView();
+    App.timer = window.setInterval(App.interval_iterator, 1000);
     App.renderScore();
     // App.timer();
     App.renderTimer();
@@ -15,34 +20,36 @@ var App = {
   restart: function() {
     App.cards.refreshView();
     App.recipes.refreshView();
+    window.clearInterval(App.timer);
+    App.config.seconds = 120;
+    App.config.points = 0;
+    App.renderScore();
+    App.timer = window.setInterval(App.interval_iterator, 1000);
+    App.renderTimer();
 
+  },
+
+  endgame: function() {
+    window.clearInterval(App.timer);
+    $('#recipes').addClass('inactive');
+    $('.card').addClass('inactive');
   },
 
   renderScore: function() {
-    $('#display_score').text(String(App.points));
+    $('#display_score').text(String(App.config.points));
   },
 
   renderTimer: function() {
-    $('#display_time').text(String(App.seconds));
+    $('#display_time').text(String(App.config.seconds));
   },
 
-  timer: function() {
-
-    window.setInterval(function(){
-
-    App.seconds -= 1;
-
+  interval_iterator: function() {
+    App.config.seconds -= 1;
     App.renderTimer();
-
-    if (App.seconds == 0) {
-        window.clearInterval(App.timer);
-        alert("Timer finished");
+    if (App.config.seconds == 0) {
+        App.endgame();
     }
-
-    }, 1000);
-
   }
-
 };
 
 // Models
@@ -90,6 +97,8 @@ App.RecipesView = Backbone.View.extend({
 
 App.RecipeView = Backbone.View.extend({
 
+  num_recipes: App.config.recipes,
+
   template:_.template($('#tpl-recipe-item').html()),
 
   events: {
@@ -125,10 +134,12 @@ App.RecipeView = Backbone.View.extend({
       $(e.target).parent().find('.select-icon').addClass('select-icon-checked');
       $(e.target).parent().find('.recipe-text').addClass('recipe-text-checked');
       $(e.target).parent().find('.recipe-text').html(text);
-      App.points += 10;
+      App.config.points += 10;
       App.renderScore();
+      App.config.num_recipes -= 1;
+      if(!App.config.num_recipes){App.endgame()};
     } else {
-      App.points -= 5;
+      App.config.points -= 5;
       App.renderScore();
       $(e.target).parent().find('.select-icon').addClass('select-icon-x');
     };
