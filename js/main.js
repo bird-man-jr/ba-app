@@ -119,12 +119,12 @@ App.RecipeView = Backbone.View.extend({
     var itemDragged = e.originalEvent.dataTransfer.getData("text/plain");
     if (targetId === itemDragged) {
       var card = $("div .card[data-product-id='" + targetId +"']");
-      var text = $(card).text();
-      $(card).html("<br><br><br>");
+      var text = $(card).html();
+      $(card).text("");
       $(card).addClass('card-removed');
       $(e.target).parent().find('.select-icon').addClass('select-icon-checked');
       $(e.target).parent().find('.recipe-text').addClass('recipe-text-checked');
-      $(e.target).parent().find('.recipe-text').text(text);
+      $(e.target).parent().find('.recipe-text').html(text);
       App.points += 10;
       App.renderScore();
     } else {

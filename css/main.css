@@ -377,6 +377,7 @@ textarea {
 #cards-wrapper {
   width: 100%;
   border: 1px solid #2f3567;
+  border-radius: 5px;
 }
 
 #cards-header {
@@ -419,7 +420,8 @@ textarea {
 
 .card-removed {
   background-color: white;
-  /*border: 1px dotted #626c83;*/
+  height: 67px;
+  border: 1px dotted #626c83;
   user-drag: none;
   user-select: none;
   -moz-user-select: none;
